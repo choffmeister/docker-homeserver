@@ -1,0 +1,13 @@
+[Unit]
+Description=Samba
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run -v /mnt/data:/data -p 139:139 -p 445:445 --name samba samba
+ExecStop=/usr/bin/docker stop -t 5 samba ; /usr/bin/docker rm -vf samba
+
+[Install]
+WantedBy=multi-user.target
+
