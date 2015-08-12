@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-SERVICES="samba"
+SERVICES="samba owncloud"
 
 # build and configure docker services
 for SERVICE in $SERVICES; do

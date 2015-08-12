@@ -1,0 +1,13 @@
+[Unit]
+Description=Owncloud
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run -v /mnt/data/owncloud/data:/var/www/html/data -v /mnt/data/owncloud/config.php:/var/www/html/config/config.php -p 80:80 --name owncloud owncloud
+ExecStop=/usr/bin/docker stop -t 5 owncloud ; /usr/bin/docker rm -vf owncloud
+
+[Install]
+WantedBy=multi-user.target
+
